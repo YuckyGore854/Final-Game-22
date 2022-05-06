@@ -8,12 +8,12 @@ public:
 	virtual void update();
 	virtual void draw(sf::RenderWindow &window);
 	virtual void loadTexture(std::string file);
-
+	virtual std::string getStr() { return entType; }
 protected:
 	sf::RectangleShape entRect;
 	sf::Texture entText;
-
 	sf::Sprite entSprite;
+	std::string entType;
 	float velocity[2] = { 0, 0 };
 };
 
