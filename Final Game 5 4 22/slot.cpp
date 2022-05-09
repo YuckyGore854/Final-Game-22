@@ -1,22 +1,23 @@
 #include "slot.h"
 #include <iostream>
 
-slot::slot(int x, int y, std::string file) {
+slot::slot(int x, int y, std::string file, int numb, int type) {
 	entSprite.setPosition(sf::Vector2f(x, y));
 	entRect.setPosition(sf::Vector2f(x, y)); 
 	originalPos.x = x;
 	originalPos.y = y;
 	loadTexture(file);
 	entType = "slot";
+	num = numb;
+	if (type == GENERATOR)
+		cost = 50;
+	if (type == ELECTRO)
+		cost = 100;
+	if (type == JUNKBOT)
+		cost = 0;
 }
 
-bool slot::hover(int mouseX, int mouseY) {
-	//std::cout << entRect.getSize().x <<" "<<entRect.getSize().y << std::endl;
-	if (mouseX < entRect.getPosition().x + entRect.getSize().x && mouseX > entRect.getPosition().x && mouseY < entRect.getPosition().y + entRect.getSize().y && mouseY > entRect.getPosition().y) {
-		return true;
-	}
-	return false;
-}
+
 
 int slot::click(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos) {
 	if (lClick && hover && cooldown == 0 && money >= cost) {

@@ -2,10 +2,10 @@
 #include "entity.h"
 class slot : public entity {
 public:
-	slot(int x, int y, std::string file);
+	slot(int x, int y, std::string file, int numb, int type);
 	void update();
-	void update(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos);
-	bool hover(int mouseX, int mouseY);
+	virtual void update(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos);
+
 	int click(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos);
 	//void draw(sf::RenderWindow& window);
 protected:
@@ -15,7 +15,9 @@ protected:
 	int cost = 0;
 	int cooldown = 0;
 	bool snappable = false;
-
+	enum robots {
+		NONE = 0, GENERATOR = 1, ELECTRO = 2, JUNKBOT = 3
+	};
 };
 
 //if enoughMoney && clicknhold && cooldown == 0

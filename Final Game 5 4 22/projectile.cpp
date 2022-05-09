@@ -4,24 +4,27 @@
 using namespace std;
 
 projectile::projectile(){
-	entRect.setPosition(sf::Vector2f(0, 0));
-
+	entRect.setPosition(sf::Vector2f(-100, 100));
+	entSprite.setPosition(sf::Vector2f(-100, 100));
 }
 
 projectile::~projectile(){}
 
-projectile::projectile(int x, int y){
+projectile::projectile(int x, int y, int projType){
 	entRect.setPosition(x, y);
-	
+	entSprite.setPosition(x, y);
 
+	if (projType == ENERGYBALL) {
+		velocity[0] = 5;
+		
+	}
+	if (projType == BOLTS) {
+		velocity[0] = 3;
+	}
 }
 
-
-void projectile::kill(){
-	exists = false;
-}
 bool projectile::offscreen() {
-	if (entRect.getPosition().x > 800) {
+	if (entRect.getPosition().x > 1280) {
 		return true;
 	}
 	else if (entRect.getPosition().x < 0) {

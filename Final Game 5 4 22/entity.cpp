@@ -1,5 +1,5 @@
 #include "entity.h"
-#include<iostream>
+
 void entity::draw(sf::RenderWindow& window) {
 	window.draw(entSprite);
 }
@@ -10,10 +10,17 @@ void entity::update() {
 	entSprite.setPosition(newPos);
 }
 
-void entity::loadTexture(std::string file) {
-	entText.loadFromFile(file);
-	entSprite.setTexture(entText);
+void entity::loadTexture(int text) {
+	entSprite.setTexture();
 	entRect.setSize(sf::Vector2f(entSprite.getTexture()->getSize().x * entSprite.getScale().x, entSprite.getTexture()->getSize().y * entSprite.getScale().y));
-	std::cout<< entRect.getSize().x<<" "<<entRect.getSize().y;
 
+
+}
+
+bool entity::hover(int mouseX, int mouseY) {
+	//std::cout << entRect.getSize().x <<" "<<entRect.getSize().y << std::endl;
+	if (mouseX < entRect.getPosition().x + entRect.getSize().x && mouseX > entRect.getPosition().x && mouseY < entRect.getPosition().y + entRect.getSize().y && mouseY > entRect.getPosition().y) {
+		return true;
+	}
+	return false;
 }

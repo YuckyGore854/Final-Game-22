@@ -143,13 +143,17 @@
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="projectile.cpp" />
+    <ClCompile Include="robot.cpp" />
     <ClCompile Include="slot.cpp" />
+    <ClCompile Include="textures.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entity.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="projectile.h" />
+    <ClInclude Include="robot.h" />
     <ClInclude Include="slot.h" />
+    <ClInclude Include="textures.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

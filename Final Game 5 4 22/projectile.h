@@ -4,12 +4,16 @@ class projectile : public entity{
 public:
 	projectile();
 	~projectile();
-	projectile(int x, int y);
-	void move();
+	projectile(int x, int y, int projType);
+	
 	void kill();
 	bool offscreen();
 	void draw(sf::RenderWindow& window);
-private:
-	bool exists;
+
+	enum type {
+		NONE = 0, ENERGYBALL = 1, BOLTS = 2
+	};
+protected:
+	int type = 0;
 };
 
