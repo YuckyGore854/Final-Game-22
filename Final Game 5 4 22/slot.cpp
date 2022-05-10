@@ -1,12 +1,12 @@
 #include "slot.h"
 #include <iostream>
 
-slot::slot(int x, int y, std::string file, int numb, int type) {
+slot::slot(int x, int y, int type, int numb) {
 	entSprite.setPosition(sf::Vector2f(x, y));
 	entRect.setPosition(sf::Vector2f(x, y)); 
 	originalPos.x = x;
 	originalPos.y = y;
-	loadTexture(file);
+	loadTexture(type);
 	entType = "slot";
 	num = numb;
 	if (type == GENERATOR)
@@ -17,10 +17,12 @@ slot::slot(int x, int y, std::string file, int numb, int type) {
 		cost = 0;
 }
 
+int slot::numReturn(){
+	return num;
+}
 
-
-int slot::click(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos) {
-	if (lClick && hover && cooldown == 0 && money >= cost) {
+int slot::click(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos, int numHeld) {
+	if (lClick && hover && cooldown == 0 && money >= cost && num == numHeld) {
 		holding = true;
 	}
 	if (!lClick) {
@@ -43,6 +45,6 @@ void slot::update() {
 
 }
 
-void slot::update(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos) {
-	click(lClick, hover, money, window, mousePos);
+void slot::update(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos, int numHeld) {
+	click(lClick, hover, money, window, mousePos, numHeld);
 }

@@ -10,11 +10,14 @@ void entity::update() {
 	entSprite.setPosition(newPos);
 }
 
-void entity::loadTexture(int text) {
-	entSprite.setTexture();
+void entity::loadTexture(int type) {
+	
+	entSprite.setTexture(textReferece->junkbot);
+	if (type == JUNKBOT) {
+		entSprite.setTexture(textReferece->junkbot);
+	}
+
 	entRect.setSize(sf::Vector2f(entSprite.getTexture()->getSize().x * entSprite.getScale().x, entSprite.getTexture()->getSize().y * entSprite.getScale().y));
-
-
 }
 
 bool entity::hover(int mouseX, int mouseY) {

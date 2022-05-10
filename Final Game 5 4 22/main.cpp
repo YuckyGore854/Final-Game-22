@@ -6,6 +6,8 @@
 #include"Grid.h"
 #include"projectile.h"
 #include"slot.h"
+#include"textures.h"
+#include"robot.h"
 
 
 using namespace std;
@@ -30,19 +32,24 @@ int main() {
 	int BotSlots = 4;
 	int money = 50;
 	bool PlayerDead = false;
-	int holding = 0;
+	int numheld = 0;
 
 	vector<entity*> entVec;
 	vector<entity*>::iterator entIter;
 	
 	bool running = true;
-	entVec.push_back(new entity("heyall.png"));
+	
+	textures globalTextures;
+	globalTextures.init();
+	entVec.push_back(new entity(1, &globalTextures));
 
+	robot ahh;
 	
 	for (int i = 0; i < BotSlots; i++) {
-		entVec.push_back(new slot(i*100 + 50, 20, "heyall.png", i, 3));
+		entVec.push_back(new slot(i*100 + 50, 20, 1, i));
 	}
 	while (running) {
+		
 		window.clear(sf::Color(255, 0, 255));
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed)
@@ -53,14 +60,18 @@ int main() {
 			mouseButtons[2] = mouse.isButtonPressed(mouse.Right);
 		}
 		
+		
 		/*for i in entities in vector //just one iteration through vector and one functino call handles all the individual calls
 			entities[i].draw(window)
 		*/
 		for (entIter = entVec.begin(); entIter != entVec.end(); ++entIter) {
 			if ((*entIter)->getStr() == "slot") {
 
-				//if (holding == 0) {
-				(*entIter)->update(mouseButtons[0], (*entIter)->hover(mousePos.x, mousePos.y), money, window, mousePos);
+				//if (holding == 0 || holding == (*entIter)->getNum()) {
+					(*entIter)->update(mouseButtons[0], (*entIter)->hover(mousePos.x, mousePos.y), money, window, mousePos, numheld);
+					if((*entIter)->hover(mousePos.x, mousePos.y) && (*entIter)->getHold() == false && mouseButtons[0] == false)
+						numheld = (*entIter)->getNum();
+					cout << numheld << endl;
 					//holding = (*entIter)->getNum();
 				//}
 				//else
@@ -73,12 +84,16 @@ int main() {
 					cursor.loadFromSystem(cursor.Arrow);
 					window.setMouseCursor(cursor);
 				}*/
+				
 			}
+		
+		  
 		}
 		
 		for (entIter = entVec.begin(); entIter != entVec.end(); ++entIter) {
 			(*entIter)->draw(window);
 		}
+		ahh.draw(window);
 		window.display();
 	}
 	
