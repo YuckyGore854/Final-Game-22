@@ -10,7 +10,7 @@ projectile::projectile(){
 
 projectile::~projectile(){}
 
-projectile::projectile(int x, int y, int projType){
+projectile::projectile(int x, int y, int projType, textures* text){
 	entRect.setPosition(x, y);
 	entSprite.setPosition(x, y);
 

@@ -155,6 +155,12 @@
     <ClInclude Include="slot.h" />
     <ClInclude Include="textures.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="heyall.png" />
+    <Image Include="junkbot.png" />
+    <Image Include="MeRo.png" />
+    <Image Include="rr.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

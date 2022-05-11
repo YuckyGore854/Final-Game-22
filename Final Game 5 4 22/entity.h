@@ -4,8 +4,8 @@
 #include"textures.h"
 class entity{
 public:
-	entity() { entRect.setPosition(sf::Vector2f(100, 100)); entRect.setFillColor(sf::Color(0, 0, 0)); entRect.setSize(sf::Vector2f(30, 30)); };//make blank entity offscreen
-	entity(int type, textures* texture) { entSprite.setPosition(sf::Vector2f(100, 100)); loadTexture(type); textReferece = texture; }
+	entity() { entRect.setPosition(sf::Vector2f(100, 100)); entRect.setFillColor(sf::Color(0, 0, 0)); entRect.setSize(sf::Vector2f(30, 30)); textReferece = nullptr; };//make blank entity offscreen
+	entity(int type, textures* texture);
 	virtual void update();
 	virtual void update(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos, int numHeld) { };
 	virtual bool hover(int mouseX, int mouseY);
@@ -23,6 +23,10 @@ protected:
 	sf::Sprite entSprite;
 	std::string entType;
 	float velocity[2] = { 0, 0 };
-	int num = 0;
+	int num;
+	int frameTick;
+	int frameNum;
+	int frameWidth, frameheight;
+	sf::IntRect SubRect;//used for drawing individual frames from a spritesheet
 };
 

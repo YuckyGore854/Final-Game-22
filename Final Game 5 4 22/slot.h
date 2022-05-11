@@ -2,7 +2,7 @@
 #include "entity.h"
 class slot : public entity {
 public:
-	slot(int x, int y, int type, int numb);
+	slot(int x, int y, int type, int numb, textures* text);
 	void update();
 	virtual void update(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos, int numHeld);
 	int click(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos, int numHeld);

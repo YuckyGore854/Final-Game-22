@@ -1,12 +1,14 @@
 #include "slot.h"
 #include <iostream>
 
-slot::slot(int x, int y, int type, int numb) {
+slot::slot(int x, int y, int type, int numb, textures* text){
+	textReferece = text;
+	loadTexture(type);
 	entSprite.setPosition(sf::Vector2f(x, y));
 	entRect.setPosition(sf::Vector2f(x, y)); 
+	
 	originalPos.x = x;
 	originalPos.y = y;
-	loadTexture(type);
 	entType = "slot";
 	num = numb;
 	if (type == GENERATOR)
@@ -15,6 +17,7 @@ slot::slot(int x, int y, int type, int numb) {
 		cost = 100;
 	if (type == JUNKBOT)
 		cost = 0;
+	std::cout << entRect.getSize().x << " " << entRect.getSize().y << std::endl;
 }
 
 int slot::numReturn(){

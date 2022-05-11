@@ -1,14 +1,11 @@
 #include"textures.h"
+#include<iostream>
 
 textures::textures() {
 	
-	junkbot.loadFromFile("junkbot.png");
-	electrobot.loadFromFile("rr.png");
-
+	junkbot.loadFromFile("MeRo.png");
+	electrobot.loadFromFile("MeRo.png");
+	defaultImg.loadFromFile("heyall.png");
 
 }
 
-void textures::init() {
-	junkbot.loadFromFile("junkbot.png");
-	electrobot.loadFromFile("rr.png");
-}

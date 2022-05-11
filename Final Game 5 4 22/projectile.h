@@ -1,10 +1,11 @@
 #pragma once
 #include "entity.h"
+
 class projectile : public entity{
 public:
 	projectile();
 	~projectile();
-	projectile(int x, int y, int projType);
+	projectile(int x, int y, int projType, textures* text);
 	
 	void kill();
 	bool offscreen();

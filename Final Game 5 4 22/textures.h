@@ -5,8 +5,12 @@
 class textures {
 public:
 	textures();
-	void init();
+
 	sf::Texture junkbot;
 	sf::Texture electrobot;
+	sf::Texture defaultImg;
 	//sf::Texture generator;
+	enum robots {
+		NONE = 0, GENERATOR = 1, ELECTRO = 2, JUNKBOT = 3
+	};
 };

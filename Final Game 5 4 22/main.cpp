@@ -23,6 +23,10 @@ int main() {
 	
 	sf::Vector2i mousePos;
 
+	enum robots {
+		NONE = 0, GENERATOR = 1, ELECTRO = 2, JUNKBOT = 3
+	};
+
 	bool mouseButtons[3] = { false, false, false };
 	const float fps = 60.0;
 	window.setFramerateLimit(fps);
@@ -40,13 +44,13 @@ int main() {
 	bool running = true;
 	
 	textures globalTextures;
-	globalTextures.init();
+
 	entVec.push_back(new entity(1, &globalTextures));
 
-	robot ahh;
+	robot ahh(ELECTRO, &globalTextures, 30, 300);
 	
 	for (int i = 0; i < BotSlots; i++) {
-		entVec.push_back(new slot(i*100 + 50, 20, 1, i));
+		entVec.push_back(new slot(i*100 + 50, 20, 0, i, &globalTextures));
 	}
 	while (running) {
 		
@@ -66,25 +70,9 @@ int main() {
 		*/
 		for (entIter = entVec.begin(); entIter != entVec.end(); ++entIter) {
 			if ((*entIter)->getStr() == "slot") {
-
-				//if (holding == 0 || holding == (*entIter)->getNum()) {
 					(*entIter)->update(mouseButtons[0], (*entIter)->hover(mousePos.x, mousePos.y), money, window, mousePos, numheld);
 					if((*entIter)->hover(mousePos.x, mousePos.y) && (*entIter)->getHold() == false && mouseButtons[0] == false)
-						numheld = (*entIter)->getNum();
-					cout << numheld << endl;
-					//holding = (*entIter)->getNum();
-				//}
-				//else
-					//holding = 0;
-				/*if ((*entIter)->hover(mousePos.x, mousePos.y)) {
-					cursor.loadFromSystem(cursor.Hand);
-					window.setMouseCursor(cursor);
-				}
-				else {
-					cursor.loadFromSystem(cursor.Arrow);
-					window.setMouseCursor(cursor);
-				}*/
-				
+						numheld = (*entIter)->getNum();	
 			}
 		
 		  
@@ -93,7 +81,8 @@ int main() {
 		for (entIter = entVec.begin(); entIter != entVec.end(); ++entIter) {
 			(*entIter)->draw(window);
 		}
-		ahh.draw(window);
+		ahh.draw(&window);
+		//ahh.draw(window);
 		window.display();
 	}
 	
