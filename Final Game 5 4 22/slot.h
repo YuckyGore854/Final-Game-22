@@ -1,6 +1,6 @@
 #pragma once
 #include "entity.h"
-class slot : public entity {
+class slot : virtual public entity {
 public:
 	slot(int x, int y, int type, int numb, textures* text);
 	void update();
@@ -8,6 +8,8 @@ public:
 	int click(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos, int numHeld);
 	int numReturn();
 	bool getHold() { return holding; }
+	void draw(sf::RenderWindow window);
+	//robot* spawnBot(float xpos, float ypos);
 	//void draw(sf::RenderWindow& window);
 protected:
 	sf::Vector2f originalPos;

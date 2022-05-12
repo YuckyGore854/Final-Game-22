@@ -70,5 +70,11 @@
     <Image Include="rr.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="nanomachines.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="dan.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

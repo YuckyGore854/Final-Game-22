@@ -38,19 +38,19 @@ int main() {
 	bool PlayerDead = false;
 	int numheld = 0;
 
-	vector<entity*> entVec;
-	vector<entity*>::iterator entIter;
+	vector<shared_ptr<entity>> entVec;
+	vector<shared_ptr<entity>>::iterator entIter;
 	
 	bool running = true;
 	
 	textures globalTextures;
 
-	entVec.push_back(new entity(1, &globalTextures));
+	entVec.push_back(unique_ptr<entity> (new entity(1, &globalTextures)));
 
 	robot ahh(ELECTRO, &globalTextures, 30, 300);
 	
 	for (int i = 0; i < BotSlots; i++) {
-		entVec.push_back(new slot(i*100 + 50, 20, 0, i, &globalTextures));
+		entVec.push_back(unique_ptr<slot>(new slot(i*100 + 50, 20, 0, i, &globalTextures)));
 	}
 	while (running) {
 		
@@ -70,9 +70,10 @@ int main() {
 		*/
 		for (entIter = entVec.begin(); entIter != entVec.end(); ++entIter) {
 			if ((*entIter)->getStr() == "slot") {
-					(*entIter)->update(mouseButtons[0], (*entIter)->hover(mousePos.x, mousePos.y), money, window, mousePos, numheld);
-					if((*entIter)->hover(mousePos.x, mousePos.y) && (*entIter)->getHold() == false && mouseButtons[0] == false)
-						numheld = (*entIter)->getNum();	
+				(*entIter)->update(mouseButtons[0], (*entIter)->hover(mousePos.x, mousePos.y), money, window, mousePos, numheld);
+				if ((*entIter)->hover(mousePos.x, mousePos.y) && (*entIter)->getHold() == false && mouseButtons[0] == false) {
+					numheld = (*entIter)->getNum();
+				}
 			}
 		
 		  

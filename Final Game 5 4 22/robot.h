@@ -1,11 +1,11 @@
 #pragma once
-#include "entity.h"
-#include "projectile.h"
+#include"entity.h"
+
 class robot : public entity {
 public:
 	robot(int type, textures* texture, float xpos, float ypos);
 	void update();
-	projectile shoot();
+	//projectile shoot();
 	robot();
 	enum robots {
 		NONE = 0, GENERATOR = 1, ELECTRO = 2, JUNKBOT = 3

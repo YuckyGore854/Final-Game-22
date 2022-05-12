@@ -42,8 +42,10 @@ void entity::loadTexture(int type) {
 
 bool entity::hover(int mouseX, int mouseY) {
 	//std::cout << entRect.getSize().x <<" "<<entRect.getSize().y << std::endl;
-	if (mouseX < entRect.getPosition().x + entRect.getSize().x && mouseX > entRect.getPosition().x && mouseY < entRect.getPosition().y + entRect.getSize().y && mouseY > entRect.getPosition().y) {
+	if (mouseX < entRect.getPosition().x + entRect.getSize().x && mouseX > entRect.getPosition().x && mouseY < entRect.getPosition().y + SubRect.height && mouseY > entRect.getPosition().y) {
 		return true;
 	}
 	return false;
 }
+
+//robot* entity::spawnBot(float xpos, float ypos) { return nullptr; }

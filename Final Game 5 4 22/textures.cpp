@@ -5,7 +5,7 @@ textures::textures() {
 	
 	junkbot.loadFromFile("MeRo.png");
 	electrobot.loadFromFile("MeRo.png");
-	defaultImg.loadFromFile("heyall.png");
+	defaultImg.loadFromFile("nanomachines.png");
 
 }
 

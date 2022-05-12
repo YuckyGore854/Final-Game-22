@@ -2,6 +2,7 @@
 #include<SFML/Graphics.hpp>
 #include<string>
 #include"textures.h"
+
 class entity{
 public:
 	entity() { entRect.setPosition(sf::Vector2f(100, 100)); entRect.setFillColor(sf::Color(0, 0, 0)); entRect.setSize(sf::Vector2f(30, 30)); textReferece = nullptr; };//make blank entity offscreen
@@ -14,6 +15,7 @@ public:
 	virtual bool getHold() { return false; }
 	virtual std::string getStr() { return entType; }
 	virtual int getNum() { return num; }
+	//virtual robot* spawnBot(float xpos, float ypos) { return nullptr; }
 	enum robots {
 		NONE = 0, GENERATOR = 1, ELECTRO = 2, JUNKBOT = 3
 	};
@@ -26,6 +28,7 @@ protected:
 	int num;
 	int frameTick;
 	int frameNum;
+	int frameCount;
 	int frameWidth, frameheight;
 	sf::IntRect SubRect;//used for drawing individual frames from a spritesheet
 };

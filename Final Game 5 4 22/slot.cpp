@@ -8,7 +8,7 @@ slot::slot(int x, int y, int type, int numb, textures* text){
 	entRect.setPosition(sf::Vector2f(x, y)); 
 	
 	originalPos.x = x;
-	originalPos.y = y;
+	originalPos.y = y - 20;
 	entType = "slot";
 	num = numb;
 	if (type == GENERATOR)
@@ -17,7 +17,11 @@ slot::slot(int x, int y, int type, int numb, textures* text){
 		cost = 100;
 	if (type == JUNKBOT)
 		cost = 0;
-	std::cout << entRect.getSize().x << " " << entRect.getSize().y << std::endl;
+	//std::cout << entRect.getSize().x << " " << entRect.getSize().y << std::endl;
+
+	SubRect.width = 100;
+	SubRect.height = 80;
+	entSprite.setTextureRect(SubRect);
 }
 
 int slot::numReturn(){
@@ -33,7 +37,7 @@ int slot::click(bool lClick, bool hover, int money, sf::RenderWindow& window, sf
 	}
 	if (holding == true) {
 		entRect.setPosition(sf::Vector2f(mousePos.x, mousePos.y));
-		entSprite.setPosition(sf::Vector2f(mousePos));
+		entSprite.setPosition(sf::Vector2f(mousePos.x - 50, mousePos.y -  50));
 		window.draw(entSprite);
 	}
 	if (!holding) {
@@ -51,3 +55,13 @@ void slot::update() {
 void slot::update(bool lClick, bool hover, int money, sf::RenderWindow& window, sf::Vector2i mousePos, int numHeld) {
 	click(lClick, hover, money, window, mousePos, numHeld);
 }
+
+void slot::draw(sf::RenderWindow window) {
+	SubRect.left = 0;
+	
+	window.draw(entSprite);
+}
+
+//robot* slot::spawnBot(float xpos, float ypos) {
+//	return new robot(type, textReferece, xpos, ypos);
+//}
