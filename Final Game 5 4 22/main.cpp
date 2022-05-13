@@ -2,6 +2,7 @@
 #include<SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
 #include<vector>
+#include<memory>
 #include"entity.h"
 #include"Grid.h"
 #include"projectile.h"
@@ -45,9 +46,8 @@ int main() {
 	
 	textures globalTextures;
 
-	entVec.push_back(unique_ptr<entity> (new entity(1, &globalTextures)));
 
-	robot ahh(ELECTRO, &globalTextures, 30, 300);
+	
 	
 	for (int i = 0; i < BotSlots; i++) {
 		entVec.push_back(unique_ptr<slot>(new slot(i*100 + 50, 20, 0, i, &globalTextures)));
@@ -74,15 +74,16 @@ int main() {
 				if ((*entIter)->hover(mousePos.x, mousePos.y) && (*entIter)->getHold() == false && mouseButtons[0] == false) {
 					numheld = (*entIter)->getNum();
 				}
+				
 			}
-		
+			
 		  
 		}
 		
 		for (entIter = entVec.begin(); entIter != entVec.end(); ++entIter) {
 			(*entIter)->draw(window);
 		}
-		ahh.draw(&window);
+		
 		//ahh.draw(window);
 		window.display();
 	}

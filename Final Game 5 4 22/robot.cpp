@@ -45,7 +45,7 @@ void robot::update() {
 
 void robot::draw(sf::RenderWindow* window) {
 	frameTick++;
-	if (frameTick == 15) {
+	if (frameTick == 7) {
 		frameNum += 1;
 		frameTick = 0;
 	}

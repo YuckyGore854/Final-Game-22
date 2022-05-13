@@ -44,6 +44,9 @@ int slot::click(bool lClick, bool hover, int money, sf::RenderWindow& window, sf
 		entRect.setPosition(originalPos);
 		entSprite.setPosition(originalPos);
 	}
+	if (holding == false && numHeld == 1) {
+
+	}
 
 	return 0;
 }
